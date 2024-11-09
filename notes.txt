@@ -1,0 +1,9 @@
+# Main dependencies
+npm install express pg dotenv cors bcrypt jsonwebtoken bull nodemailer handlebars helmet hpp xss-clean winston winston-elasticsearch prom-client swagger-jsdoc swagger-ui-express ws ioredis multer multer-s3 aws-sdk stripe @elastic/elasticsearch semver compression @faker-js/faker uuid axios moment lodash
+
+# Development dependencies
+npm install --save-dev jest supertest nodemon eslint prettier @babel/core @babel/preset-env husky lint-staged
+
+npx husky install
+npm install husky lint-staged --save-dev
+
