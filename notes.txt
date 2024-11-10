@@ -1,3 +1,262 @@
+
+const actions = [
+  {
+    user: {
+      get: [
+        "get user data",
+        "middle ware for image",
+        "get user in list ==> comments, post author, list friend, ",
+      ],
+      post: [" add new data"],
+      put: ["update data"],
+      patch: ["update data can't update password or email if you register by google"],
+      delete: ["delete data"],
+    },
+    donation: {
+      get: ["get donation data for id or all"],
+      post: ["add new donation"],
+      put: ["update donation"],
+      patch: ["update donation"],
+      delete: ["delete donation"],
+    },
+    report: {
+      get: ["get donation data for id or all"],
+      post: [
+        "add new donation",
+        "check for post or comment that has report if the post reported more than 50 change its status to reported",
+      ],
+      put: ["update donation"],
+      patch: ["update donation"],
+      delete: ["delete donation"],
+    },
+    post: {
+      get: [
+        "get post details data (you should to get all comments , like rating , is the current user subscribe or not or like before or rate before)",
+        "get post the related with user , or posts most view, posts most like or save , post direct children, get all post children",
+      ],
+      post: [
+        "middle ware for image",
+        "if you a suggested send notification for all moderator and owners",
+        "check for post or comment that has report if the post reported more than 50 change its status to reported",
+      ],
+      put: ["send notification for all", "middle ware for image"],
+      patch: [
+        "middle ware for image",
+        "when moderator update status of pending to removed send notification what the reason of rejection for suggested and if accepted also ",
+        "if reported send to all the we are reported",
+      ],
+      delete: ["send notification for all"],
+    },
+    comments: {
+      get: ["get comments of post with its replays if found"],
+      post: [],
+      patch: [],
+      delete: ["when delete delete replay "],
+    },
+    friendRequest: {
+      get: ["get where i am sender or receiver"],
+      post: [
+        "check before that this user send before or not to the same person",
+        "send notification for receiver",
+      ],
+      patch: ["send notification for sender that accepted or rejected"],
+      delete: [
+        "remove the other person that you have been remove from person friend list",
+      ],
+    },
+    like: {
+      get: ["get like count on post or comment"],
+      post: [
+        "check before that this user not like before",
+        "send notification for all",
+      ],
+      delete: ["send notification for all"],
+    },
+    rate: {
+      get: ["count and sum of rates for post"],
+      post: [
+        "check before that this user not like before",
+        "send notification for all",
+      ],
+      patch: ["send notification for all"],
+      delete: ["send notification for all"],
+    },
+    save: {
+      get: ["git by id"],
+      post: ["check before that this user not save before"],
+      patch: ["update message only"],
+      delete: [],
+    },
+    subscribe: {
+      get: ["git by id"],
+      post: ["check before that this user not subscribe before"],
+      delete: [],
+    },
+    share: {
+      get: [],
+      post: [],
+      delete: [],
+    },
+    views: {
+      get: [],
+      post: [],
+      delete: [],
+    },
+    group: {
+      get: ["git by id"],
+      post: ["chek the name is unique"],
+      delete: [],
+    },
+  },
+];
+
+
+
+const permissions = [
+  {
+    user: {
+      get: "login or get profile => *",
+      create: "register => *",
+      update: "self, auth",
+      delete: "self, auth",
+    },
+    donation: {
+      read: "x",
+      post: "*",
+      put: "x",
+      patch: "x",
+      delete: ["x"],
+    },
+    report: {
+      get: ["*"],
+      post: ["auth"],
+      put: ["x"],
+      patch: ["x"],
+      delete: ["x"],
+    },
+    post: {
+      get: ["*"],
+      post: ["auth and has can post for this tree"],
+      put: [
+        "self or tree moderator",
+        "(title, category, description, tags, image) only update for suggestion",
+      ],
+      put: [
+        "self or tree moderator",
+        "(title, category, description, tags, image) only update for suggestion",
+      ],
+
+      delete: ["moderators"],
+    },
+    comments: {
+      get: ["*"],
+      post: ["auth"],
+      patch: ["auth , self"],
+      delete: ["auth, self"],
+    },
+    friendRequest: {
+      get: ["auth and one of both"],
+      post: ["auth"],
+      patch: ["auth and one of both"],
+      delete: ["auth and one of both"],
+    },
+    like: {
+      get: ["*"],
+      post: ["auth"],
+      delete: ["auth, self"],
+    },
+    rate: {
+      get: ["*"],
+      post: ["auth, post"],
+      patch: ["auth, self"],
+      delete: ["auth, self"],
+    },
+    save: {
+      get: ["self"],
+      post: ["self"],
+      patch: ["self"],
+      delete: [],
+    },
+    subscribe: {
+      get: ["*"],
+      post: ["auth"],
+      delete: ["auth"],
+    },
+    share: {
+      get: ["*"],
+      post: ["*"],
+      delete: ["x"],
+    },
+    views: {
+      get: ["*"],
+      post: ["*"],
+      delete: ["x"],
+    },
+    group: {
+      get: ["self"],
+      post: ["self"],
+      delete: ["x"],
+    },
+  },
+];
+
+
+
+
+/*
+
+
+
+Create post with all fields 
+
+Get post 
+
+	Get all post data
+	Get comments 
+	Get replays
+	Like on each comment and for the post
+	Get the related posts children or siblings
+	Get author image and name
+
+Post actions
+	
+	Edit post 
+	Like and dislike and comment
+	Save post 
+	Share post
+	Subscribe for the main post
+  Create comment on post
+	When remove change status
+	
+	
+Delete 
+	
+	Delete all command
+	Delete comment delete replay
+
+
+
+When change post status 
+Change 
+
+
+
+
+Front end 
+
+Add post status in create and edit
+Remove arabic description and title
+Add map view in grid and in post details
+Edit and remove for comments
+Add remove for post author above the post 
+Add notification status for user profile
+
+
+*/
+/************************************ */
+
+
+
 # Main dependencies
 npm install express pg dotenv cors bcrypt jsonwebtoken bull nodemailer handlebars helmet hpp xss-clean winston winston-elasticsearch prom-client swagger-jsdoc swagger-ui-express ws ioredis multer multer-s3 aws-sdk stripe @elastic/elasticsearch semver compression @faker-js/faker uuid axios moment lodash
 
